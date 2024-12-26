@@ -24,3 +24,6 @@ lock = false;
 - semaphore full=0, empty=n, mutex=1로 두고 producer에서 critcal section에 들어갈 때 mutex=1로 두어 단독으로 처리. 처리되면 wait에 signal을 주어 full=0으로 바꿔주고 다음 데이터를 critical section에 넣는 동작 반복.
 ### readers-writers problem
 - mutex = 1, rw_mutex=1, read_count=0. write와 read를 동시에 할 수 없도록함. BUT starvation문제는 해결하지 못함.(우선순위가 계속 밀리는 현상.예를 들어 reader에 계속 데이터가 들어가면 read_count가 계속 증가하여 writer 조건이 만족하지못하여 writer권한이 생기지 않음.)
+- starvation : 우선순위가 계속 밀려 뒷 프로세스가 굶어죽는것
+- deadlock : 일어나지 않을 조건을 프로세스가 계속 기다리는 것
+- livelock : 무한 굴레의 조건을 프로세스가 계속 도는 것
