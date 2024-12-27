@@ -1,4 +1,4 @@
-// 
+// 쓰레드 생성 및 관리
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
