@@ -107,3 +107,21 @@ processor : 능동적인 개체
 ### Efficiency and Performance
 - cashe : sRam, 자주 접근되는 데이터를 미리 정보를 저장해두는 것. = buffer cashe
 
+## REVIEW
+### kernal
+커널의 특징 : 하드웨어를 관리하는게 운영체제, 커널. 메모리가 상주중이며 빠르게 일을 처리하기 위함이다. 
+kernal mode, user mode : 유저모드는 커널부분이 아닌 부분. 커널을 보호하기 위해 듀얼모드를 분리. kernal이 망가지면 시스템 전체가 마비되기 때문. 두 모드가 번갈아가며 실행한다.
+kernal에게 요청하는 법 : interrupt, system call - os는 interrupt를 기반으로 동작한다. round robin과 같은 방법. IO작업이 마무리되면 interrupt발생. 소프트웨어는 system interrupt
+kernal 역할: 예외상황 처리, 오류 처리를 커널에서 한다.
+### network
+Tcp/ip 프로토콜 네트워크 : os안에 들어있으며 통신에 사용된다.
+### OS
+- process : multitasking을 위한 식별번호 pid, ppid - 프로세스관리, uid,gid는 유저관리
+- pid는 현재 프로세스 식별id, ppid는 현재 프로세스의 부모 프로세스 식별id.
+- $id, $ps -ef, $ps, $pc, $bash
+- storage structure : 모든 저장장치는 cpu의 속도에 가깝게 처리하는 것이 목표다.
+1. cpu와 가장 가까운 것은 resister이다. 가장 작은 단위의 storage capacity. 그 다음은 캐시 sRam - 성능을 좀 더 좋게 하기 위함이다. 다음은 main memory - dRam 이것들을 primary storage. 
+2. nvm - optical disk - magnetic storage
+### process
+- new-ready-waiting-running-terminated
+- cpu 공간보다 memory에 적재된 process의 양이 많기 때문에 context switch가 일어남. time-out되면 interrupt를 통해 멈춰지며 PCB에 save된다. 다시 계산을 시작할때 복구를 시켜서 중단된 시점부터 execute한다. 
