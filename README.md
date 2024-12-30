@@ -65,4 +65,16 @@ processor : 능동적인 개체
 
 ## Chapter 13 : file system interface
 - 파일이란 - contiguous logical address space
+- file contents = text file, source file, executable file
+### File Attributes
 - 파일 속성 : name, type, identifier, size, protection
+- 파일 속성은 file control block에 저장된다. 리눅스에서는 inode에 저장됨.
+- inode를 저장하는 disk의 block과 userdata를 저장하는 block은 다르다. disk의 한블럭에는 4kbyt 저장가능. 예를들어 inode=256byt면 한개의 disk block에는 16개의 inode가 들어갈 수 있다. 데이터의 크기가 40kbyte면 데이터블럭이 10개 필요하다. 4mbyte면 1M=2^20 4M=2^22 4K=2^12이므로 2^10=1024개의 데이터블록이 필요하다. inode의 구조 = inode table은 inode number, link count, file type으로 분류되고, data pool에는 inode directort data가 들어있다. 여기에 file attributes가 들어있고 block1, 2,3..과 같이 들어있다. block의 갯수의 따라 이 파일의 크기를 짐작할 수 있다. 
+### file operations
+- create, write, reposition within file(seek-읽고쓰는 설정 변경), delete, truncate, open, close
+- create API system call - <code>int fd = open("파일이름", O_CREAT\O_WRONLY\O_TRUNC,S_IRUSR\S_IWUSR)</code>
+- 임의접근(random access) - 디스크에 대한 임의접근 <br> <code>off_t lseek(int filde,off_t offset,int whence);</code>
+### file type
+- ex) crw-r--r-- 중에 c가 file type에 해당한다. 뒤는 권한에 대한 내용을 3개로 나눠서 권한을 표시.
+- file type : - regular file, b block file, d directory, c character, l symbolic link, p pipe, s socket
+- permission bits : r read, w write, x execute, s setuid, t sticky bit
