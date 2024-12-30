@@ -89,3 +89,21 @@ processor : 능동적인 개체
 2. 각 분할마다 fs생성 - 윈도우 : NTFS, 리눅스 - ext4<br> <code>sudo mkfs.ext4/dev/sdaS</code>
 - 코드의미 : 리눅스환경에서 mkfs라는 시스템파일을 만드는데 root밑 dev에 sdas 하드디스크에 생성한다.
 - Mount arguments : FStype, partiotion, mount point <br><code>$moint -t ext3/dev/mnt</code>
+
+## Chapter 14 : file system implementation
+### allocation method : contiguous allocation, linked alloctaion, indexed allocation
+1. contiguous allocation 연속할당 : filename, start, length를 저장해 매핑, 예를 들어 count라는 파일의 start=0, length=2이면 디스크의 0번주소, 1번주소에 데이터가 연속적으로 할당된 것이다. 
+- 단점 : 디스크사이에 6개의 공간이 있을때 7개이상의 데이터를 저장하고 싶을때 연속할당법은 할당하지 못한다. 또한 마지막 블록은 빈공간이 생길 가능성이 높다. 예를들어 한블럭당 512byte를 저장할 수 있는데 파일의 크기가 513byte라면 두번째 블록은 1byte만 사용하고 나머지는 비어있는 상태가 된다. 할당하기전에 파일사이즈를 미리 알고있어야 한다. external fragmentation
+- 장점 : 임의접근이 쉽다. 찾고자하는 byte의 위치를 찾기가 쉽기 때문. 단순하고 가장 좋은 성능을 낸다.
+2. linked allocation 연결할당 : start와 end지점을 정해놓고 각 블록이 끝날때마다 다음 블록을 표시한다.
+- 장점 : 필요공간보다 더 많은 할당공간이 필요할 때의 연속할당의 문제점을 해결가능
+- 단점 : 임의접근이 어렵다. 순차적인 접근의 속도가 느리다. disk seek time이 길다. 중간 블럭의 하나의 포인터를 잃어버리면, 다음 블록을 찾을 수 없다(블럭이 여기저기 흩어져있기 때문).
+3. indexed allocation 색인할당 : filename, index block이 저장되어있다. index block안에 각 블럭 번호가 들어있다.
+- 장점 : 연속할당과 연결할당의 단점을 보완하였다. 비어있는 공간을 줄인다. 임의접근이 좋은 편이다. 리눅스가 이 방법을 사용 중
+- 단점 : 색인블록이 추가가 되고, 이 블록이 망가지면 파일을 찾을 수 없다. 리눅스에서도 inode의 일부가 이 데이터를 담고 있다.
+### Free space management
+- 파일 시스템에서 사용중인 블록이 어디가 사용되었고, 얼마나 사용되고 있는지 알아야한다. 이것을 bit vector or bit map이라 한다.
+- 블럭이 100만개면, 100만개의 비트를 사용하여 1이면 free, 0이면 occupied. EX) block size= 4KB=2^12byte, disk size=2^40b=1TB이면, 필요 블럭개수 n=2^28bits=2^25B=32MB, 만약 하나의 클러스터를 4block으로 사용한다면, 8MB의 메모리가 필요하다.
+### Efficiency and Performance
+- cashe : sRam, 자주 접근되는 데이터를 미리 정보를 저장해두는 것. = buffer cashe
+
