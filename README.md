@@ -5,7 +5,10 @@
 ## 4. Tibero
 ### tibero6 & 7 충돌나지 않도록 하기
 - listener_port 값이 다르게하기 6에서는 8629, 7에서는 18629
+- $TB_HOME/client/config/tbdsn.tbr 내용중에서 prot = 8629를 port=18629로 수정
+- $TB_HOME/config/$TB_SID.tip에서 listener_port=8629 -> 18629
 - 자원관련 : 저장공간, 메모랴량 부족시 6버전 삭제 필요
+  
 ### 자기소개
 - 개발 관심분야 : big data,클라우드(AWS) 기반 API 및 웹 개발
 - 관심 기업 : 한화비전
