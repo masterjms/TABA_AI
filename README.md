@@ -2,7 +2,10 @@
 ## 1. Operation System
 ## 2. DataBase/SQL
 ## 3. AI
-## 4. Team Project
+## 4. Tibero
+### tibero6 & 7 충돌나지 않도록 하기
+- listener_port 값이 다르게하기 6에서는 8629, 7에서는 18629
+- 자원관련 : 저장공간, 메모랴량 부족시 6버전 삭제 필요
 ### 자기소개
 - 개발 관심분야 : big data,클라우드(AWS) 기반 API 및 웹 개발
 - 관심 기업 : 한화비전
