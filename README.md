@@ -1,8 +1,12 @@
 # TABA 7기 교육과정 (24.12.23~25.02.28)
-## 1. Operation System
-## 2. DataBase/SQL
-## 3. AI
-## 4. Tibero
+# TMAX Tibero & DK University & 한국클라우드컴퓨팅연구조합CCCR 산-학-정 연계 교육과정
+## 1. Operation System 24.12.23 ~ 25.01.02
+## 2. DataBase/SQL 25.01.02 ~ 01.07
+## 3. AI 25.01.08 ~ 01.14
+## 4. Tibero 25.01.15 ~ 01.21
+## 5. Team Project 25.01.22 ~ 02.28
+## 6. codeit 수강 24.12.23 ~ 25.02.28
+
 ### tibero6 & 7 충돌나지 않도록 하기
 - listener_port 값이 다르게하기 6에서는 8629, 7에서는 18629
 - $TB_HOME/client/config/tbdsn.tbr 내용중에서 prot = 8629를 port=18629로 수정
