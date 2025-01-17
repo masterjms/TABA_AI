@@ -22,8 +22,8 @@ enum ClothingSize {
     handmade: boolean;
   }
 
-  // 오류발생
-  function printSizes(product: Product) { // Product에서 사이즈를 가져오고 싶은데 clothing, shoe 두개가 있다.
+  // 오류발생 - sizes
+  function printSize(product: Product) { // Product에서 사이즈를 가져오고 싶은데 clothing, shoe 두개가 있다.
     const availableSizes = product.sizes.join(', '); // sizes의 타입이 충돌한다.
     console.log(`구매 가능한 사이즈는 다음과 같습니다: ${availableSizes}`);
   }
